@@ -15,7 +15,7 @@ class Exp(MyExp):
         self.width = 0.25
         self.scale = (0.5, 1.5)
         self.random_size = (10, 20)
-        self.test_size = (416, 416)
+        self.test_size = (320, 320)
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
         self.enable_mixup = False
 

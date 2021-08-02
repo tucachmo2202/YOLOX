@@ -211,6 +211,11 @@ class COCOEvaluator:
                 logger.warning("Use standard COCOeval.")
 
             cocoEval = COCOeval(cocoGt, cocoDt, annType[1])
+
+            catIds = cocoGt.getCatIds('person')
+            imgIds = cocoGt.getImgIds(catIds=catIds)
+            cocoEval.params.imgIds = imgIds
+            cocoEval.params.catIds = [1]
             cocoEval.evaluate()
             cocoEval.accumulate()
             redirect_string = io.StringIO()

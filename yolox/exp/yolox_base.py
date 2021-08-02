@@ -18,15 +18,15 @@ class Exp(BaseExp):
         super().__init__()
 
         # ---------------- model config ---------------- #
-        self.num_classes = 80
+        self.num_classes = 1
         self.depth = 1.00
         self.width = 1.00
 
         # ---------------- dataloader config ---------------- #
         # set worker to 4 for shorter dataloader init time
         self.data_num_workers = 4
-        self.input_size = (640, 640)
-        self.random_size = (14, 26)
+        self.input_size = (320, 320)
+        self.random_size = (7, 13)
         self.data_dir = None
         self.train_ann = "instances_train2017.json"
         self.val_ann = "instances_val2017.json"
@@ -57,7 +57,7 @@ class Exp(BaseExp):
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
         # -----------------  testing config ------------------ #
-        self.test_size = (640, 640)
+        self.test_size = (320, 320)
         self.test_conf = 0.01
         self.nmsthre = 0.65
 
