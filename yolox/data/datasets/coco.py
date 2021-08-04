@@ -43,8 +43,8 @@ class COCODataset(Dataset):
         self.coco = COCO(os.path.join(self.data_dir, "annotations", self.json_file))
         catIds = self.coco.getCatIds('person')
         self.ids = self.coco.getImgIds(catIds=catIds)
-        self.class_ids = sorted(self.coco.getCatIds())
-        cats = self.coco.loadCats(self.coco.getCatIds())
+        self.class_ids = sorted(self.coco.getCatIds('person'))
+        cats = self.coco.loadCats(self.coco.getCatIds('person'))
         self._classes = tuple([c["name"] for c in cats])
         self.annotations = self._load_coco_annotations()
         self.name = name
@@ -61,7 +61,7 @@ class COCODataset(Dataset):
         im_ann = self.coco.loadImgs(id_)[0]
         width = im_ann["width"]
         height = im_ann["height"]
-        anno_ids = self.coco.getAnnIds(imgIds=[int(id_)], iscrowd=False)
+        anno_ids = self.coco.getAnnIds(imgIds=[int(id_)], catIds = [1], iscrowd=False)
         annotations = self.coco.loadAnns(anno_ids)
         objs = []
         for obj in annotations:
